@@ -10,6 +10,11 @@
 #include "Image.h"
 
 
+struct Point {
+    int x;
+    int y;
+};
+
 enum class SpriteType {
     GROUND,
     WALL,
