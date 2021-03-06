@@ -97,5 +97,14 @@ Labyrinth::Labyrinth(std::string &labyrinth_path, \
 Image&
 Labyrinth::GetRoomImgByPos(Point room_pos)
 {
-    return room_imgs[room_pos.y * labyrinth_width + room_pos.x];
+    return room_imgs[ord(labyrinth_plan[room_pos.y * \
+                                 labyrinth_width + room_pos.x]) - \
+                                 ord('A')];
+}
+
+
+Image&
+Labyrinth::GetSpriteImgByType(SpriteType sprite_type)
+{
+    return sprite_imgs[static_cast<int>(sprite_type)];
 }
