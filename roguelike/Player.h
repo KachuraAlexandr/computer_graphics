@@ -13,8 +13,7 @@ enum class MovementDir {
 };
 
 struct Player {
-    explicit Player(Point room_position, \
-                           Labyrinth& game_labyrinth);
+    Player(Point room_position, Labyrinth& game_labyrinth);
 
     bool Moved() const;
     void ProcessInput(MovementDir dir);
