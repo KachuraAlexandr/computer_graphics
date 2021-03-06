@@ -2,6 +2,7 @@
 #define MAIN_PLAYER_H
 
 #include "Image.h"
+#include "Labyrinth.h"
 
 struct Point {
     int x;
