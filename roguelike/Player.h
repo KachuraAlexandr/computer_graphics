@@ -4,10 +4,6 @@
 #include "Image.h"
 #include "Labyrinth.h"
 
-struct Point {
-    int x;
-    int y;
-};
 
 enum class MovementDir {
     UP,
