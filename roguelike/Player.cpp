@@ -1,6 +1,16 @@
 #include "Player.h"
 
 
+explicit Player::Player(Point room_position = {.x = 0, .y = 0}, \
+                                  Labyrinth game_labyrinth)
+{
+    room_pos = room_position;
+    labyrinth = game_labyrinth;
+    coords = labyrinth.GetPlayerPosByRoomPos(room_pos);
+    old_coords = coords;
+}
+
+
 bool Player::Moved() const
 {
     if (coords.x == old_coords.x && coords.y == old_coords.y) {
