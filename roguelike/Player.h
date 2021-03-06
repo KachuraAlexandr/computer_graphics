@@ -13,7 +13,7 @@ enum class MovementDir {
 };
 
 struct Player {
-    explicit Player(Point room_position = {.x = 0, .y = 0}, \
+    explicit Player(Point room_position, \
                            Labyrinth& game_labyrinth);
 
     bool Moved() const;
@@ -22,9 +22,9 @@ struct Player {
 
 private:
     Labyrinth labirinth;
-    Point room_pos {.x = 0, .y = 0};
-    Point coords {.x = 10, .y = 10};
-    Point old_coords {.x = 10, .y = 10};
+    Point room_pos;
+    Point coords;
+    Point old_coords;
     int move_speed = 4;
 
 };
