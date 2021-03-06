@@ -92,3 +92,10 @@ Labyrinth::Labyrinth(std::string &labyrinth_path, \
         room_imgs.push_back(room_img);
     }
 }
+ 
+
+Image&
+Labyrinth::GetRoomImgByPos(Point room_pos)
+{
+    return room_imgs[room_pos.y * labyrinth_width + room_pos.x];
+}
