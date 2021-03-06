@@ -21,9 +21,9 @@ enum class SpriteType {
     BLANK_SPACE,
     SPIKES_TRAP,
     PLAYER,
-    WIN_TEXT,
-    LOSE_TEXT
-}
+    WON_TEXT,
+    LOST_TEXT
+};
 
 
 struct Labyrinth {
