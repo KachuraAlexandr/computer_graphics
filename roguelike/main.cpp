@@ -11,8 +11,8 @@
 
 constexpr GLsizei WINDOW_WIDTH = 1024, WINDOW_HEIGHT = 1024;
 
-constexpr std::string rooms_dir = "../resources/rooms";
-constexpr std::string sprites_dir = "../resources/sprites";
+constexpr char rooms_dir[] = "../resources/rooms";
+constexpr char sprites_dir[] = "../resources/sprites";
 
 struct InputState
 {
@@ -166,19 +166,20 @@ int main(int argc, char** argv)
     
         std::vector<std::string> room_paths;
         for (int i = 0; i < room_types_num; i++) {
-            room_paths.push_back(rooms_dir + "/room_" + \
+            room_paths.push_back(std::string(rooms_dir) + "/room_" + \
                              chr(ord('A') + i) + ".txt");
         }
         std::vector<std::string> sprite_paths;
-        sprite_paths.push_back(sprites_dir + "/ground.jpg");    
-        sprite_paths.push_back(sprites_dir + "/wall.jpg");
-        sprite_paths.push_back(sprites_dir + "/blank_space.jpg");
-        sprite_paths.push_back(sprites_dir + "/spikes_trap.jpg");
-        sprite_paths.push_back(sprites_dir + "/player.png");
-        sprite_paths.push_back(sprites_dir + "/won_text.jpg");
-        sprite_paths.push_back(sprites_dir + "/lost_text.jpg");
+        std::string sprites_dir_str = std::string(sprites_dir);
+        sprite_paths.push_back(sprites_dir_str + "/ground.jpg");    
+        sprite_paths.push_back(sprites_dir_str + "/wall.jpg");
+        sprite_paths.push_back(sprites_dir_str + "/blank_space.jpg");
+        sprite_paths.push_back(sprites_dir_str + "/spikes_trap.jpg");
+        sprite_paths.push_back(sprites_dir_str + "/player.png");
+        sprite_paths.push_back(sprites_dir_str + "/won_text.jpg");
+        sprite_paths.push_back(sprites_dir_str + "/lost_text.jpg");
     
-        Labyrinth labyrinth{rooms_dir + "/labyrinth.txt", \
+        Labyrinth labyrinth{std::string(rooms_dir) + "/labyrinth.txt", \
                         room_paths, sprite_paths};
         
         Point starting_room{.x = 0, .y = 0};
