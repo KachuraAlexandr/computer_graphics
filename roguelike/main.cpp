@@ -183,9 +183,8 @@ int main(int argc, char** argv)
     
 	Point starting_pos{.x = WINDOW_WIDTH / 2, .y = WINDOW_HEIGHT / 2};
         Point starting_room{.x = 0, .y = 0}
-	Player player{starting_room, starting_pos};
+	Player player{starting_room, starting_pos, labyrinth};
 
-	//Image ground("../resources/ground.jpg");
 	Image screenBuffer(WINDOW_WIDTH, WINDOW_HEIGHT, 4);
     
         for (int y = 0; y < WINDOW_HEIGHT; y++) {
