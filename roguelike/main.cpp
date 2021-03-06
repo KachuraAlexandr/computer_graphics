@@ -3,6 +3,7 @@
 #include "common.h"
 #include "Image.h"
 #include "Player.h"
+#include "Labyrinth.h"
 
 #define GLFW_DLL
 #include <GLFW/glfw3.h>
@@ -11,7 +12,7 @@
 constexpr GLsizei WINDOW_WIDTH = 1024, WINDOW_HEIGHT = 1024;
 
 constexpr std::string rooms_dir = "../resources/rooms";
-constexpr std::string sprites_dir = "../resources/sprites"
+constexpr std::string sprites_dir = "../resources/sprites";
 
 struct InputState
 {
@@ -150,64 +151,64 @@ int main(int argc, char** argv)
 
 	glfwSetKeyCallback(window, OnKeyboardPressed);  
 	glfwSetCursorPosCallback(window, OnMouseMove); 
-    glfwSetMouseButtonCallback(window, OnMouseButtonClicked);
+        glfwSetMouseButtonCallback(window, OnMouseButtonClicked);
 	glfwSetScrollCallback(window, OnMouseScroll);
 
 	if(initGL() != 0) {
 		return -1;
 	}
 	
-    // Reset any OpenGL errors which could be present for some reason
+        // Reset any OpenGL errors which could be present for some reason
 	GLenum gl_error = glGetError();
 	while (gl_error != GL_NO_ERROR) {
 		gl_error = glGetError();
-    }
+        }
     
-    std::vector<std::string> room_paths;
-    for (int i = 0; i < room_types_num; i++) {
-        room_paths.push_back(rooms_dir + "/room_" + \
+        std::vector<std::string> room_paths;
+        for (int i = 0; i < room_types_num; i++) {
+            room_paths.push_back(rooms_dir + "/room_" + \
                              chr(ord('A') + i) + ".txt");
-    }
-    std::vector<std::string> sprite_paths;
-    sprite_paths.push_back(sprites_dir + "/ground.jpg");    
-    sprite_paths.push_back(sprites_dir + "/wall.jpg");
-    sprite_paths.push_back(sprites_dir + "/blank_space.jpg");
-    sprite_paths.push_back(sprites_dir + "/spikes_trap.jpg");
-    sprite_paths.push_back(sprites_dir + "/player.png");
-    sprite_paths.push_back(sprites_dir + "/won_text.jpg");
-    sprite_paths.push_back(sprites_dir + "/lost_text.jpg");
+        }
+        std::vector<std::string> sprite_paths;
+        sprite_paths.push_back(sprites_dir + "/ground.jpg");    
+        sprite_paths.push_back(sprites_dir + "/wall.jpg");
+        sprite_paths.push_back(sprites_dir + "/blank_space.jpg");
+        sprite_paths.push_back(sprites_dir + "/spikes_trap.jpg");
+        sprite_paths.push_back(sprites_dir + "/player.png");
+        sprite_paths.push_back(sprites_dir + "/won_text.jpg");
+        sprite_paths.push_back(sprites_dir + "/lost_text.jpg");
     
-    Labyrinth labyrinth{rooms_dir + "/labyrinth.txt", \
+        Labyrinth labyrinth{rooms_dir + "/labyrinth.txt", \
                         room_paths, sprite_paths};
     
 	Point starting_pos{.x = WINDOW_WIDTH / 2, .y = WINDOW_HEIGHT / 2};
-    Point starting_room{.x = 0, .y = 0}
+        Point starting_room{.x = 0, .y = 0}
 	Player player{starting_room, starting_pos};
 
 	//Image ground("../resources/ground.jpg");
 	Image screenBuffer(WINDOW_WIDTH, WINDOW_HEIGHT, 4);
     
-    for (int y = 0; y < WINDOW_HEIGHT; y++) {
-        for (int x = 0; x < WINDOW_WIDTH; x++) {
-            screenBuffer.PutPixel(x, y, ground.GetPixel(x % tile_size, y % tile_size));
+        for (int y = 0; y < WINDOW_HEIGHT; y++) {
+            for (int x = 0; x < WINDOW_WIDTH; x++) {
+                screenBuffer.PutPixel(x, y, labyrinth.GetRoomImgByPos(starting_room).GetPixel(x % tile_size, y % tile_size));
+            }
         }
-    }
 
-    glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);  GL_CHECK_ERRORS;
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f); GL_CHECK_ERRORS;
+        glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);  GL_CHECK_ERRORS;
+        glClearColor(0.0f, 0.0f, 0.0f, 1.0f); GL_CHECK_ERRORS;
 
-    // game loop
+        // game loop
 	while (!glfwWindowShouldClose(window)) {
 		GLfloat currentFrame = glfwGetTime();
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
-        glfwPollEvents();
+                glfwPollEvents();
 
-        processPlayerMovement(player);
-        player.Draw(screenBuffer, ground);
+                processPlayerMovement(player);
+                player.Draw(screenBuffer);
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); GL_CHECK_ERRORS;
-        glDrawPixels (WINDOW_WIDTH, WINDOW_HEIGHT, GL_RGBA, GL_UNSIGNED_BYTE, screenBuffer.Data()); GL_CHECK_ERRORS;
+                glDrawPixels (WINDOW_WIDTH, WINDOW_HEIGHT, GL_RGBA, GL_UNSIGNED_BYTE, screenBuffer.Data()); GL_CHECK_ERRORS;
 
 		glfwSwapBuffers(window);
 	}
