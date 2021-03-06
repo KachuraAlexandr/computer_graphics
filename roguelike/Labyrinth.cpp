@@ -5,8 +5,9 @@ Labyrinth::Labyrinth(std::string &labyrinth_path, \
                      std::vector<std::string> &room_paths, \ 
                      std::vector<std::string> &sprite_paths)
 {
+    std::ifstream labyrinth_f;
     try {
-        std::ifstream labyrinth_f(labyrinth_path);
+        labyrinth_f.open(labyrinth_path);
         if (!labyrinth_f) {
             throw std::runtime_error(std::strerror(errno));
         }
@@ -20,19 +21,19 @@ Labyrinth::Labyrinth(std::string &labyrinth_path, \
     ss.str("");
     ss.clear();
     labyrinth_width = labyrinth_plan.find_first_of('\n');
-    labyrinth_plan.erase(std::remove(labyrinth_plan.begin(), \ 
-                                     labyrinth.end(), \
-                                     '\n'), \
+    labyrinth_plan.erase(std::remove(labyrinth_plan.begin(),\ 
+                                     labyrinth.end(), '\n'),\
                          labyrinth_plan.end());
-    labyrinth_height = labyrinth_plan.length() / labirinth_width;
+    labyrinth_height = labyrinth_plan.length() / labyrinth_width;
 
     for (auto& room_path: room_paths) {
+        std::ifstream room_f;
         try {
-            std::ifstream room_f(room_path);
+            room_f.open(room_path);
             if (!room_f) {
                 throw std::runtime_error(std::strerror(errno));
             }
-        } catch (std:exception const& e) {
+        } catch (std::exception const& e) {
             std::cout << e.what() << std::endl;
         }
         
@@ -44,16 +45,15 @@ Labyrinth::Labyrinth(std::string &labyrinth_path, \
     
     room_width = rooms_plan[0].find_first_of('\n');
     for (auto& room_plan: room_plans) {
-        room_plan.erase(std::remove(room_plan.begin(), \
-                                    room_plan.end(), \
-                                    '\n'), \
+        room_plan.erase(std::remove(room_plan.begin(),\
+                                    room_plan.end(), '\n'), \
                         room_plan.end());
     }
     room_height = room_plans[0].length() / room_width;
 
     for (auto& sprite_path: sprite_paths) {
         Image cur_sprite(sprite_path);
-        sprites.push_back(cur_sprite);
+        sprite_imgs.push_back(cur_sprite);
     }
 
     for (auto& room_plan: room_plans) {
@@ -63,7 +63,9 @@ Labyrinth::Labyrinth(std::string &labyrinth_path, \
             for (int w = 0; w < room_width; w++) {
                 SpriteType cur_sprite_type;
                 switch (room_plan[h * room_width + w]) {
-                    case '.', 'T', '@':
+                    case '.':
+                    case 'T':
+                    case '@':
                         cur_sprite_type = SpriteType::GROUND;
                         break;
                         
