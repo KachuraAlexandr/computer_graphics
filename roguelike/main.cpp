@@ -180,10 +180,9 @@ int main(int argc, char** argv)
     
         Labyrinth labyrinth{rooms_dir + "/labyrinth.txt", \
                         room_paths, sprite_paths};
-    
-	Point starting_pos{.x = WINDOW_WIDTH / 2, .y = WINDOW_HEIGHT / 2};
-        Point starting_room{.x = 0, .y = 0}
-	Player player{starting_room, starting_pos, labyrinth};
+        
+        Point starting_room{.x = 0, .y = 0};
+	Player player{starting_room, labyrinth};
 
 	Image screenBuffer(WINDOW_WIDTH, WINDOW_HEIGHT, 4);
     
