@@ -37,6 +37,6 @@ private:
     int labyrinth_width;
     int room_height;
     int room_width;
-}
+};
 
 #endif //MAIN_LABYRINTH_H
