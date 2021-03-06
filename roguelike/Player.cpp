@@ -41,12 +41,13 @@ void Player::ProcessInput(MovementDir dir)
 }
 
 
-void Player::Draw(Image &screen, Image &tile)
+void Player::Draw(Image &screen)
 {
     if (Moved()) {
-        for(int y = old_coords.y; y <= old_coords.y + tile_size; ++y) {
-            for(int x = old_coords.x; x <= old_coords.x + tile_size; ++x) {
-                screen.PutPixel(x, y, tile.GetPixel(x, y));
+        Image cur_room_img = labyrinth.GetRoomImgByPos(room_pos);
+        for(int y = 0; y < screen.Height(); ++y) {
+            for(int x = 0; x < screen.Width(); ++x) {
+                screen.PutPixel(x, y, cur_room_img.GetPixel(x, y));
             }
         }
 
