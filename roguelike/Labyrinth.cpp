@@ -99,9 +99,9 @@ Labyrinth::Labyrinth(std::string &labyrinth_path, \
 Image&
 Labyrinth::GetRoomImgByPos(Point room_pos)
 {
-    return room_imgs[ord(labyrinth_plan[room_pos.y * \
+    return room_imgs[int(labyrinth_plan[room_pos.y * \
                                  labyrinth_width + room_pos.x]) - \
-                                 ord('A')];
+                                 int('A')];
 }
 
 
@@ -115,9 +115,9 @@ Labyrinth::GetSpriteImgByType(SpriteType sprite_type)
 Point
 Labyrinth::GetPlayerPosByRoomPos(Point room_pos)
 {
-    int player_tile_pos = room_plans[ord(labyrinth_plan[room_pos.y * \
+    int player_tile_pos = room_plans[int(labyrinth_plan[room_pos.y * \
                                labyrinth_width + room_pos.x]) - \
-                               ord('A')].find_first_of('@');
+                               int('A')].find_first_of('@');
     return Point{.x = (player_tile_pos % room_width) * tile_size, \
                         .y = (room_height - player_tile_pos // room_width) * tile_size};
 }
