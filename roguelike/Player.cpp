@@ -1,7 +1,7 @@
 #include "Player.h"
 
 
-explicit Player::Player(Point room_position = {.x = 0, .y = 0}, \
+Player::Player(Point room_position = {.x = 0, .y = 0}, \
                                   Labyrinth game_labyrinth)
 {
     room_pos = room_position;
