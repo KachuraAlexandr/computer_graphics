@@ -22,7 +22,7 @@ Labyrinth::Labyrinth(std::string &labyrinth_path, \
     ss.clear();
     labyrinth_width = labyrinth_plan.find_first_of('\n');
     labyrinth_plan.erase(std::remove(labyrinth_plan.begin(),\ 
-                                     labyrinth.end(), '\n'),\
+                                     labyrinth_plan.end(), '\n'),\
                          labyrinth_plan.end());
     labyrinth_height = labyrinth_plan.length() / labyrinth_width;
 
@@ -43,7 +43,7 @@ Labyrinth::Labyrinth(std::string &labyrinth_path, \
         ss.clear();
     }
     
-    room_width = rooms_plan[0].find_first_of('\n');
+    room_width = room_plans[0].find_first_of('\n');
     for (auto& room_plan: room_plans) {
         room_plan.erase(std::remove(room_plan.begin(),\
                                     room_plan.end(), '\n'), \
