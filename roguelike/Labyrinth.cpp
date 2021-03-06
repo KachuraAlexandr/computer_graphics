@@ -1,8 +1,8 @@
 #include "Labyrinth.h"
 
 
-Labyrinth::Labyrinth(std::string &labyrinth_path, \ 
-                     std::vector<std::string> &room_paths, \ 
+Labyrinth::Labyrinth(std::string &labyrinth_path,\ 
+                     std::vector<std::string> &room_paths,\ 
                      std::vector<std::string> &sprite_paths)
 {
     std::ifstream labyrinth_f;
@@ -46,7 +46,7 @@ Labyrinth::Labyrinth(std::string &labyrinth_path, \
     room_width = room_plans[0].find_first_of('\n');
     for (auto& room_plan: room_plans) {
         room_plan.erase(std::remove(room_plan.begin(),\
-                                    room_plan.end(), '\n'), \
+                                    room_plan.end(), '\n'),\
                         room_plan.end());
     }
     room_height = room_plans[0].length() / room_width;
@@ -57,7 +57,7 @@ Labyrinth::Labyrinth(std::string &labyrinth_path, \
     }
 
     for (auto& room_plan: room_plans) {
-        Image room_img(room_height * tile_size, \
+        Image room_img(room_height * tile_size,\
                        room_width * tile_size, 4);
         for (int h = 0; h < room_height; h++) {
             for (int w = 0; w < room_width; w++) {
@@ -83,8 +83,8 @@ Labyrinth::Labyrinth(std::string &labyrinth_path, \
 
                 for (int y = 0; y < tile_size; y++) {
                     for (int x = 0; x < tile_size; x++) {
-                        room_img.PutPixel(w * tile_size + x, \
-                                          h * tile_size + y, \    
+                        room_img.PutPixel(w * tile_size + x,\
+                                          h * tile_size + y,\    
                                           sprite_imgs[static_cast<int>\
                                             (cur_sprite_type)].GetPixel(x, y));
                     }
@@ -99,8 +99,8 @@ Labyrinth::Labyrinth(std::string &labyrinth_path, \
 Image&
 Labyrinth::GetRoomImgByPos(Point room_pos)
 {
-    return room_imgs[int(labyrinth_plan[room_pos.y * \
-                                 labyrinth_width + room_pos.x]) - \
+    return room_imgs[int(labyrinth_plan[room_pos.y *\
+                                 labyrinth_width + room_pos.x]) -\
                                  int('A')];
 }
 
@@ -115,10 +115,11 @@ Labyrinth::GetSpriteImgByType(SpriteType sprite_type)
 Point
 Labyrinth::GetPlayerPosByRoomPos(Point room_pos)
 {
-    int player_tile_pos = room_plans[int(labyrinth_plan[room_pos.y * \
-                               labyrinth_width + room_pos.x]) - \
+    int player_tile_pos = room_plans[int(labyrinth_plan[room_pos.y *\
+                               labyrinth_width + room_pos.x]) -\
                                int('A')].find_first_of('@');
-    Point player_pos {.x = (player_tile_pos % room_width) * tile_size, \
-                        .y = (room_height - player_tile_pos // room_width) * tile_size};
+    int x_pos = (player_tile_pos % room_width) * tile_size;
+    int y_pos = (room_height - player_tile_pos // room_width) * tile_size;
+    Point player_pos{.x = x_pos, .y = y_pos};
     return player_pos;
 }
