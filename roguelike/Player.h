@@ -20,7 +20,7 @@ struct Player {
     void Draw(Image &screen);
 
 private:
-    Labyrinth labirinth;
+    Labyrinth labyrinth;
     Point room_pos;
     Point coords;
     Point old_coords;
