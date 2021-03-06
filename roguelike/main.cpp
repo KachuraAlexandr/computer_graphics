@@ -166,8 +166,8 @@ int main(int argc, char** argv)
     
         std::vector<std::string> room_paths;
         for (int i = 0; i < room_types_num; i++) {
-            room_paths.push_back(std::string(rooms_dir) + "/room_" + \
-                             chr(ord('A') + i) + ".txt");
+            room_paths.push_back(std::string(rooms_dir) + "/room_" +\
+                             char(int('A') + i) + ".txt");
         }
         std::vector<std::string> sprite_paths;
         std::string sprites_dir_str = std::string(sprites_dir);
