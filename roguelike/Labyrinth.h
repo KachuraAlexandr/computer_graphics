@@ -37,7 +37,7 @@ private:
     std::string labyrinth_plan;
     std::vector<std::string> room_plans;
     std::vector<Image> room_imgs;
-    std::vector<Image> sprites;
+    std::vector<Image> sprite_imgs;
     int labyrinth_height;
     int labyrinth_width;
     int room_height;
