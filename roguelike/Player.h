@@ -16,18 +16,18 @@ enum class MovementDir {
 };
 
 struct Player {
-    explicit Player(Point room = {.x = 0, .y = 0}, Point pos = {.x = 10, .y = 10}) :
-                 player_img(player_tile_path), coords(pos), old_coords(coords) {};
+    explicit Player(Point room_position = {.x = 0, .y = 0}, Point pos = {.x = 10, .y = 10}, Labyrinth& game_labyrinth) :
+                 room_pos(room_position), coords(pos), old_coords(coords), labyrinth(game_labyrinth) {};
 
     bool Moved() const;
     void ProcessInput(MovementDir dir);
-    void Draw(Image &screen, Image &tile);
+    void Draw(Image &screen);
 
 private:
-    Point room {.x = 0, .y = 0};
+    Labyrinth labirinth;
+    Point room_pos {.x = 0, .y = 0};
     Point coords {.x = 10, .y = 10};
     Point old_coords {.x = 10, .y = 10};
-    Pixel color {.r = 255, .g = 255, .b = 0, .a = 255};
     int move_speed = 4;
 
 };
