@@ -1,8 +1,8 @@
 #include "Player.h"
 
 
-Player::Player(Point room_position = {.x = 0, .y = 0}, \
-                                  Labyrinth& game_labyrinth)
+Player::Player(Point room_position, \
+                       Labyrinth& game_labyrinth)
 {
     room_pos = room_position;
     labyrinth = game_labyrinth;
