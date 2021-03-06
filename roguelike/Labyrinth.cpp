@@ -118,6 +118,7 @@ Labyrinth::GetPlayerPosByRoomPos(Point room_pos)
     int player_tile_pos = room_plans[int(labyrinth_plan[room_pos.y * \
                                labyrinth_width + room_pos.x]) - \
                                int('A')].find_first_of('@');
-    return Point{.x = (player_tile_pos % room_width) * tile_size, \
+    Point player_pos {.x = (player_tile_pos % room_width) * tile_size, \
                         .y = (room_height - player_tile_pos // room_width) * tile_size};
+    return player_pos;
 }
