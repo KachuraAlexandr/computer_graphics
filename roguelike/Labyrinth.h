@@ -26,6 +26,7 @@ struct Labyrinth {
               std::vector<std::string> &sprite_paths);
     Image& GetRoomImgByPos(Point room_pos);
     Image& GetSpriteImgByType(SpriteType sprite_type);
+    Point GetPlayerPosByRoomPos(Point room_pos);
 
 private:
     std::string labyrinth_plan;
