@@ -2,7 +2,7 @@
 
 
 Player::Player(Point room_position = {.x = 0, .y = 0}, \
-                                  Labyrinth game_labyrinth)
+                                  Labyrinth& game_labyrinth)
 {
     room_pos = room_position;
     labyrinth = game_labyrinth;
