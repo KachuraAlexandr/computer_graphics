@@ -179,7 +179,7 @@ int main(int argc, char** argv)
         sprite_paths.push_back(sprites_dir_str + "/won_text.jpg");
         sprite_paths.push_back(sprites_dir_str + "/lost_text.jpg");
     
-        Labyrinth labyrinth{std::string(rooms_dir) + "/labyrinth.txt", \
+        Labyrinth labyrinth{"../resources/rooms/labyrinth.txt", \
                         room_paths, sprite_paths};
         
         Point starting_room{.x = 0, .y = 0};
