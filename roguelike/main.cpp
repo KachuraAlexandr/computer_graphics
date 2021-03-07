@@ -13,7 +13,7 @@ constexpr GLsizei WINDOW_WIDTH = 1024, WINDOW_HEIGHT = 1024;
 
 //constexpr char rooms_dir[] = "../resources/rooms";
 //constexpr char sprites_dir[] = "../resources/sprites";
-constexpr byte room_types_num = 6;
+constexpr int room_types_num = 6;
 
 struct InputState
 {
@@ -172,7 +172,7 @@ int main(int argc, char** argv)
                              char(int('A') + i) + ".txt");
         }
         std::vector<std::string> sprite_paths;
-        std::string sprites_dir_str = std::string(sprites_dir);
+        std::string sprites_dir_str = std::string("../resources/sprites");
         sprite_paths.push_back(sprites_dir_str + "/ground.jpg");    
         sprite_paths.push_back(sprites_dir_str + "/wall.jpg");
         sprite_paths.push_back(sprites_dir_str + "/blank_space.jpg");
