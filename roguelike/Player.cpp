@@ -4,8 +4,6 @@
 Player::Player(Point room_position, \
                Labyrinth& game_labyrinth): room_pos(room_position), labyrinth(game_labyrinth)
 {
-    //room_pos = room_position;
-    //labyrinth = game_labyrinth;
     coords = labyrinth.GetPlayerPosByRoomPos(room_pos);
     old_coords = coords;
 }
@@ -55,11 +53,11 @@ void Player::Draw(Image &screen)
 {
     if (Moved()) {
         Image cur_room_img = labyrinth.GetRoomImgByPos(room_pos);
-        /*for(int y = 0; y < screen.Height(); ++y) {
+        for(int y = 0; y < screen.Height(); ++y) {
             for(int x = 0; x < screen.Width(); ++x) {
                 screen.PutPixel(x, y, cur_room_img.GetPixel(x, y));
             }
-        } */
+        } 
 
         old_coords = coords;
     }
