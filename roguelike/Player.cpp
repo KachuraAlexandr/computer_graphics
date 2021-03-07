@@ -60,6 +60,9 @@ void Player::ProcessInput(MovementDir dir)
         new_coords.y >= 0 &&\
         new_coords.y < tile_size * labyrinth.GetRoomHeight() &&\
         labyrinth.GetTileTypeByPos() != SpriteType::WALL) {
+        
+        old_coords = coords;
+        coords = new_coords;
     }
 }
 
