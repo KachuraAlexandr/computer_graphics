@@ -13,6 +13,7 @@ constexpr GLsizei WINDOW_WIDTH = 1024, WINDOW_HEIGHT = 1024;
 
 constexpr char rooms_dir[] = "../resources/rooms";
 constexpr char sprites_dir[] = "../resources/sprites";
+constexpr byte room_types_num = 6;
 
 struct InputState
 {
