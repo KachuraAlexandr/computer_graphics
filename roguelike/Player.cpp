@@ -55,11 +55,12 @@ void Player::ProcessInput(MovementDir dir)
         default:
             break;
     }
+
     if (new_coords.x >= 0 &&\
-        new_coords.x < tile_size * labyrinth.GetRoomWidth()) &&\
+        new_coords.x < tile_size * (labyrinth.GetRoomWidth() - 1) &&\
         new_coords.y >= 0 &&\
-        new_coords.y < tile_size * labyrinth.GetRoomHeight() &&\
-        labyrinth.GetTileTypeByPos() != SpriteType::WALL) {
+        new_coords.y < tile_size * (labyrinth.GetRoomHeight() - 1) &&\
+        labyrinth.GetTileTypeByPos(room_pos, new_coords) != SpriteType::WALL) {
         
         old_coords = coords;
         coords = new_coords;
