@@ -77,7 +77,9 @@ Labyrinth::Labyrinth(const std::string &labyrinth_path,\
                     case ' ':
                         cur_sprite_type = SpriteType::BLANK_SPACE;
                         break;
-                        
+
+                    case 'x':
+                        cur_sprite_type = SpriteType::EXIT;
                     default:
                         break;
                 }
@@ -123,4 +125,18 @@ Labyrinth::GetPlayerPosByRoomPos(Point room_pos)
     int y_pos = (room_height - player_tile_pos / room_width) * tile_size;
     Point player_pos{.x = x_pos, .y = y_pos};
     return player_pos;
+}
+
+
+int
+Labyrinth::GetRoomWidth()
+{
+    return room_width;
+}
+
+
+int
+Labyrinth::GetRoomHeight()
+{
+    return room_height;
 }
