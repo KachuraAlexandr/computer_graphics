@@ -12,7 +12,7 @@ Labyrinth::Labyrinth(const std::string &labyrinth_path,\
             throw std::runtime_error(std::strerror(errno));
         }
     } catch (std::exception const& e) {
-        std::cout << e.what() << std::endl;
+        std::cout << e.what() << " line 1 " << std::endl;
     }
 
     std::ostringstream ss;
@@ -34,7 +34,7 @@ Labyrinth::Labyrinth(const std::string &labyrinth_path,\
                 throw std::runtime_error(std::strerror(errno));
             }
         } catch (std::exception const& e) {
-            std::cout << e.what() << std::endl;
+            std::cout << e.what() << " line 2 " << std::endl;
         }
         
         ss << room_f.rdbuf();
