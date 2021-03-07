@@ -57,7 +57,6 @@ Labyrinth::Labyrinth(const std::string &labyrinth_path,\
         sprite_imgs.push_back(cur_sprite);
     }
 
-    /*
     for (auto& room_plan: room_plans) {
         Image room_img(room_height * tile_size,\
                        room_width * tile_size, 4);
@@ -95,7 +94,6 @@ Labyrinth::Labyrinth(const std::string &labyrinth_path,\
         }
         room_imgs.push_back(room_img);
     }
-    */
 }
  
 
