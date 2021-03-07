@@ -198,7 +198,7 @@ int main(int argc, char** argv)
 
         glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);  GL_CHECK_ERRORS;
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f); GL_CHECK_ERRORS;
-
+/*
         // game loop
 	while (!glfwWindowShouldClose(window)) {
 		GLfloat currentFrame = glfwGetTime();
@@ -214,7 +214,7 @@ int main(int argc, char** argv)
 
 		glfwSwapBuffers(window);
 	}
-
+*/
 	glfwTerminate();
 	return 0;
 }
