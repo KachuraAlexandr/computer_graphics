@@ -55,18 +55,18 @@ void Player::Draw(Image &screen)
 {
     if (Moved()) {
         Image cur_room_img = labyrinth.GetRoomImgByPos(room_pos);
-        for(int y = 0; y < screen.Height(); ++y) {
+        /*for(int y = 0; y < screen.Height(); ++y) {
             for(int x = 0; x < screen.Width(); ++x) {
                 screen.PutPixel(x, y, cur_room_img.GetPixel(x, y));
             }
-        }
+        } */
 
         old_coords = coords;
     }
-
+/*
     for(int y = coords.y; y <= coords.y + tile_size; ++y) {
         for(int x = coords.x; x <= coords.x + tile_size; ++x) {
             screen.PutPixel(x, y, labyrinth.GetSpriteImgByType(SpriteType::PLAYER).GetPixel(x % tile_size, y % tile_size));
         }
-    }
+    } */
 }
