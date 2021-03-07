@@ -21,46 +21,46 @@ bool Player::Moved() const
 
 void Player::ProcessInput(MovementDir dir)
 {
-    int move_dist = move_speed * 1;
-    Point new_coords;
-    switch(dir) {
-        case MovementDir::UP:
-            new_coords.x = coords.x;
-            new_coords.y = coords.y + move_dist;
-            //old_coords.y = coords.y;
-            //coords.y += move_dist;
-            break;
-
-        case MovementDir::DOWN:
-            new_coords.x = coords.x;
-            new_coords.y = coords.y - move_dist;
-            //old_coords.y = coords.y;
-            //coords.y -= move_dist;
-            break;
-    
-        case MovementDir::LEFT:
-            new_coords.x = coords.x - move_dist;
-            new_coords.y = coords.y;
-            //old_coords.x = coords.x;
-            //coords.x -= move_dist;
-            break;
-
-        case MovementDir::RIGHT:
-            new_coords.x = coords.x + move_dist;
-            new_coords.y = coords.y;
-            //old_coords.x = coords.x;
-            //coords.x += move_dist;
-            break;
-
-        default:
-            break;
-    }
-
     if (new_coords.x >= 0 &&\
         new_coords.x < tile_size * labyrinth.GetRoomWidth()) &&\
         new_coords.y >= 0 &&\
         new_coords.y < tile_size * labyrinth.GetRoomHeight() &&\
         labyrinth.GetTileTypeByPos() != SpriteType::WALL) {
+        
+        int move_dist = move_speed * 1;
+        //Point new_coords;
+        switch(dir) {
+            case MovementDir::UP:
+                new_coords.x = coords.x;
+                new_coords.y = coords.y + move_dist;
+                //old_coords.y = coords.y;
+                //coords.y += move_dist;
+                break;
+
+            case MovementDir::DOWN:
+                new_coords.x = coords.x;
+                new_coords.y = coords.y - move_dist;
+                //old_coords.y = coords.y;
+                //coords.y -= move_dist;
+                break;
+    
+            case MovementDir::LEFT:
+                new_coords.x = coords.x - move_dist;
+                new_coords.y = coords.y;
+                //old_coords.x = coords.x;
+                //coords.x -= move_dist;
+                break;
+
+            case MovementDir::RIGHT:
+                new_coords.x = coords.x + move_dist;
+                new_coords.y = coords.y;
+                //old_coords.x = coords.x;
+                //coords.x += move_dist;
+                break;
+
+            default:
+                break;
+        }
     }
 }
 
