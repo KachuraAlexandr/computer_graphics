@@ -34,6 +34,8 @@ struct Labyrinth {
     Image& GetRoomImgByPos(Point room_pos);
     Image& GetSpriteImgByType(SpriteType sprite_type);
     Point GetPlayerPosByRoomPos(Point room_pos);
+    int GetRoomWidth();
+    int GetRoomHeight();
 
 private:
     std::string labyrinth_plan;
