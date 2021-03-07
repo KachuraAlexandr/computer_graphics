@@ -41,6 +41,7 @@ Labyrinth::Labyrinth(const std::string &labyrinth_path,\
         room_plans.push_back(ss.str());
         ss.str("");
         ss.clear();
+        room_f.close();
     }
     
     room_width = room_plans[0].find_first_of('\n');
