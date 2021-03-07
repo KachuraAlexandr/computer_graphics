@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+pcmake_minimum_required(VERSION 3.5)
 project(main)
 
 set(CMAKE_CXX_STANDARD 14)
@@ -46,7 +46,7 @@ if(WIN32)
   target_compile_options(main PRIVATE)
   target_link_libraries(main LINK_PUBLIC ${OPENGL_gl_LIBRARY} glfw3dll)
 else()
-  target_compile_options(main PRIVATE -Wnarrowing)
+  target_compile_options(main PRIVATE -Wnarrowing -g)
   target_link_libraries(main LINK_PUBLIC ${OPENGL_gl_LIBRARY} glfw rt dl)
 endif()
 
