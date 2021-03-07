@@ -1,9 +1,9 @@
 #include "Labyrinth.h"
 
 
-Labyrinth::Labyrinth(std::string &labyrinth_path,\ 
-                     std::vector<std::string> &room_paths,\ 
-                     std::vector<std::string> &sprite_paths)
+Labyrinth::Labyrinth(const std::string &labyrinth_path,\ 
+                     const std::vector<std::string> &room_paths,\ 
+                     const std::vector<std::string> &sprite_paths)
 {
     std::ifstream labyrinth_f;
     try {
