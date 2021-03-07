@@ -138,7 +138,6 @@ Labyrinth::GetTileTypeByPos(Point room_pos, Point coords)
     std::string room_plan = room_plans[int(room_type) - int('A')];
     int room_plan_pos = coords.y / tile_size * room_width + \
                                      coords.x / tile_size;
-    return 
     if (room_plan[room_plan_pos] == '.') {
         return SpriteType::GROUND;
     } else if (room_plan[room_plan_pos] == '#') {
