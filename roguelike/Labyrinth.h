@@ -28,8 +28,9 @@ enum class SpriteType {
 
 
 struct Labyrinth {
-    Labyrinth(std::string &labyrinth_path, std::vector<std::string> &room_paths,    
-              std::vector<std::string> &sprite_paths);
+    Labyrinth(const std::string &labyrinth_path,\
+              const std::vector<std::string> &room_paths,\
+              const std::vector<std::string> &sprite_paths);
     Image& GetRoomImgByPos(Point room_pos);
     Image& GetSpriteImgByType(SpriteType sprite_type);
     Point GetPlayerPosByRoomPos(Point room_pos);
