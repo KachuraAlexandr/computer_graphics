@@ -207,7 +207,7 @@ int main(int argc, char** argv)
                 glfwPollEvents();
 
                 processPlayerMovement(player);
-                //player.Draw(screenBuffer);
+                player.Draw(screenBuffer);
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); GL_CHECK_ERRORS;
                 glDrawPixels (WINDOW_WIDTH, WINDOW_HEIGHT, GL_RGBA, GL_UNSIGNED_BYTE, screenBuffer.Data()); GL_CHECK_ERRORS;
