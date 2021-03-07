@@ -184,8 +184,7 @@ int main(int argc, char** argv)
         sprite_paths.push_back(sprites_dir_str + "/lost_text.jpg");
     
         Labyrinth labyrinth{"../resources/rooms/labyrinth.txt", \
-                        room_paths, sprite_paths};
-    /*    
+                        room_paths, sprite_paths};  
         Point starting_room{.x = 0, .y = 0};
 	Player player{starting_room, labyrinth};
 
@@ -196,12 +195,11 @@ int main(int argc, char** argv)
                 screenBuffer.PutPixel(x, y, labyrinth.GetRoomImgByPos(starting_room).GetPixel(x % tile_size, y % tile_size));
             }
         }
-*/
+
         glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);  GL_CHECK_ERRORS;
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f); GL_CHECK_ERRORS;
 
         // game loop
-        /*
 	while (!glfwWindowShouldClose(window)) {
 		GLfloat currentFrame = glfwGetTime();
 		deltaTime = currentFrame - lastFrame;
@@ -216,7 +214,7 @@ int main(int argc, char** argv)
 
 		glfwSwapBuffers(window);
 	}
-*/
+
 	glfwTerminate();
 	return 0;
 }
