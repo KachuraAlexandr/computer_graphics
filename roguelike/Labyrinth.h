@@ -21,7 +21,7 @@ enum class SpriteType {
     WALL,
     BLANK_SPACE,
     SPIKES_TRAP,
-    EXIT;
+    EXIT,
     PLAYER,
     WON_TEXT,
     LOST_TEXT
