@@ -22,11 +22,13 @@ bool Player::Moved() const
 void Player::ProcessInput(MovementDir dir)
 {    
     int move_dist = move_speed * 1;
-    Point new_coords;
+    Point new_coords, check_coords;
     switch(dir) {
         case MovementDir::UP:
             new_coords.x = coords.x;
             new_coords.y = coords.y + move_dist;
+            check_coords.x = new_coords.x; 
+            check_coords.y = new_coords.y + tile_size;
             //old_coords.y = coords.y;
             //coords.y += move_dist;
             break;
@@ -34,6 +36,8 @@ void Player::ProcessInput(MovementDir dir)
         case MovementDir::DOWN:
             new_coords.x = coords.x;
             new_coords.y = coords.y - move_dist;
+            check_coords.x = new_coords.x;
+            check_coords.y = new_coords.y - tile_size;
             //old_coords.y = coords.y;
             //coords.y -= move_dist;
             break;
@@ -41,6 +45,8 @@ void Player::ProcessInput(MovementDir dir)
         case MovementDir::LEFT:
             new_coords.x = coords.x - move_dist;
             new_coords.y = coords.y;
+            check_coords.x = new_coords.x - tile_size;
+            check_coords.y = new_coords.y;
             //old_coords.x = coords.x;
             //coords.x -= move_dist;
             break;
@@ -48,6 +54,8 @@ void Player::ProcessInput(MovementDir dir)
         case MovementDir::RIGHT:
             new_coords.x = coords.x + move_dist;
             new_coords.y = coords.y;
+            check_coords.x = new_coords.x + tile_size;
+            check_coords.y = new_coords.y;
             //old_coords.x = coords.x;
             //coords.x += move_dist;
             break;
@@ -60,7 +68,7 @@ void Player::ProcessInput(MovementDir dir)
         new_coords.x < tile_size * (labyrinth.GetRoomWidth() - 1) &&\
         new_coords.y >= 0 &&\
         new_coords.y < tile_size * (labyrinth.GetRoomHeight() - 1) &&\
-        labyrinth.GetTileTypeByPos(room_pos, new_coords) != SpriteType::WALL) {
+        labyrinth.GetTileTypeByPos(room_pos, check_coords) != SpriteType::WALL) {
         
         old_coords = coords;
         coords = new_coords;
