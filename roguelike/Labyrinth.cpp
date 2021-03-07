@@ -144,13 +144,13 @@ Labyrinth::GetTileTypeByPos(Point room_pos, Point coords)
     } else if (room_plan[room_plan_pos] == '#') {
         return SpriteType::WALL;
     } else if (room_plan[room_plan_pos] == ' ') {
-        return SpriteType::BLSNK_SPACE
+        return SpriteType::BLANK_SPACE;
     } else if (room_plan[room_plan_pos] == 'T') {
-
+        return SpriteType::SPIKES_TRAP;
     } else if (room_plan[room_plan_pos] == 'x') {
-
+        return SpriteType::EXIT;
     } else if (room_plan[room_plan_pos] == '@') {
-
+        return SpriteType::PLAYER;
     }
 }
 
