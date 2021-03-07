@@ -80,6 +80,8 @@ Labyrinth::Labyrinth(const std::string &labyrinth_path,\
 
                     case 'x':
                         cur_sprite_type = SpriteType::EXIT;
+                        break;
+
                     default:
                         break;
                 }
