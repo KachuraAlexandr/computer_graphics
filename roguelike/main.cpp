@@ -179,6 +179,7 @@ int main(int argc, char** argv)
         sprite_paths.push_back(sprites_dir_str + "/wall.jpg");
         sprite_paths.push_back(sprites_dir_str + "/blank_space.jpg");
         sprite_paths.push_back(sprites_dir_str + "/spikes_trap.jpg");
+        sprite_paths.push_back(sprites_dir_str + "/exit.jpg");
         sprite_paths.push_back(sprites_dir_str + "/player.png");
         sprite_paths.push_back(sprites_dir_str + "/won_text.jpg");
         sprite_paths.push_back(sprites_dir_str + "/lost_text.jpg");
