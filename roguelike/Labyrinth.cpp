@@ -1,8 +1,8 @@
 #include "Labyrinth.h"
 
 
-Labyrinth::Labyrinth(const std::string &labyrinth_path,\ 
-                     const std::vector<std::string> &room_paths,\ 
+Labyrinth::Labyrinth(const std::string &labyrinth_path,\
+                     const std::vector<std::string> &room_paths,\
                      const std::vector<std::string> &sprite_paths)
 {
     std::ifstream labyrinth_f;
@@ -21,7 +21,7 @@ Labyrinth::Labyrinth(const std::string &labyrinth_path,\
     ss.str("");
     ss.clear();
     labyrinth_width = labyrinth_plan.find_first_of('\n');
-    labyrinth_plan.erase(std::remove(labyrinth_plan.begin(),\ 
+    labyrinth_plan.erase(std::remove(labyrinth_plan.begin(),\
                                      labyrinth_plan.end(), '\n'),\
                          labyrinth_plan.end());
     labyrinth_height = labyrinth_plan.length() / labyrinth_width;
@@ -84,7 +84,7 @@ Labyrinth::Labyrinth(const std::string &labyrinth_path,\
                 for (int y = 0; y < tile_size; y++) {
                     for (int x = 0; x < tile_size; x++) {
                         room_img.PutPixel(w * tile_size + x,\
-                                          h * tile_size + y,\    
+                                          h * tile_size + y,\
                                           sprite_imgs[static_cast<int>\
                                             (cur_sprite_type)].GetPixel(x, y));
                     }
