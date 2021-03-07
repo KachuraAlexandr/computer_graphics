@@ -1,4 +1,4 @@
-#include <string>
+##include <string>
 #include <vector>
 #include "common.h"
 #include "Image.h"
@@ -11,8 +11,8 @@
 
 constexpr GLsizei WINDOW_WIDTH = 1024, WINDOW_HEIGHT = 1024;
 
-constexpr char rooms_dir[] = "../resources/rooms";
-constexpr char sprites_dir[] = "../resources/sprites";
+#constexpr char rooms_dir[] = "../resources/rooms";
+#constexpr char sprites_dir[] = "../resources/sprites";
 constexpr byte room_types_num = 6;
 
 struct InputState
@@ -166,8 +166,9 @@ int main(int argc, char** argv)
         }
     
         std::vector<std::string> room_paths;
+        std::string rooms_dir = "../resources/rooms/room_";
         for (int i = 0; i < room_types_num; i++) {
-            room_paths.push_back(std::string(rooms_dir) + "/room_" +\
+            room_paths.push_back(rooms_dir +\
                              char(int('A') + i) + ".txt");
         }
         std::vector<std::string> sprite_paths;
