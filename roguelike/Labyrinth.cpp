@@ -130,6 +130,31 @@ Labyrinth::GetPlayerPosByRoomPos(Point room_pos)
 }
 
 
+SpriteType
+Labyrinth::GetTileTypeByPos(Point room_pos, Point coords)
+{
+    char room_type = labyrinth_plan[room_pos.y * \
+                                 labyrinth_width + room_pos.x];
+    std::string room_plan = room_plans[int(room_type) - int('A')];
+    int room_plan_pos = coords.y / tile_size * room_width + \
+                                     coords.x / tile_size;
+    return 
+    if (room_plan[room_plan_pos] == '.') {
+        return SpriteType::GROUND;
+    } else if (room_plan[room_plan_pos] == '#') {
+        return SpriteType::WALL;
+    } else if (room_plan[room_plan_pos] == ' ') {
+        return SpriteType::BLSNK_SPACE
+    } else if (room_plan[room_plan_pos] == 'T') {
+
+    } else if (room_plan[room_plan_pos] == 'x') {
+
+    } else if (room_plan[room_plan_pos] == '@') {
+
+    }
+}
+
+
 int
 Labyrinth::GetRoomWidth()
 {
