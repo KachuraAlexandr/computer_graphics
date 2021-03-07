@@ -30,6 +30,23 @@ Image::Image(int a_width, int a_height, int a_channels)
 }
 
 
+Image::Image(const Image& img)
+{
+    data = new Pixel[img.Width() * img.Height()]{};
+    if (data != nullptr) {
+        width = img.Width();
+        height = img.Height();
+        channels = img.Channels();
+        size = img.Size();
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                data[width * y + x] = img.GetPixel(x, y);
+            }
+        }
+    }
+}
+
+
 int Image::Save(const std::string &a_path)
 {
     auto extPos = a_path.find_last_of('.');
