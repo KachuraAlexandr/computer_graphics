@@ -12,7 +12,7 @@ Labyrinth::Labyrinth(const std::string &labyrinth_path,\
             throw std::runtime_error(std::strerror(errno));
         }
     } catch (std::exception const& e) {
-        std::cout << e.what() << " line 1 " << std::endl;
+        std::cout << e.what() << std::endl;
     }
 
     std::ostringstream ss;
@@ -25,7 +25,7 @@ Labyrinth::Labyrinth(const std::string &labyrinth_path,\
                                      labyrinth_plan.end(), '\n'),\
                          labyrinth_plan.end());
     labyrinth_height = labyrinth_plan.length() / labyrinth_width;
-
+    
     for (auto& room_path: room_paths) {
         std::ifstream room_f;
         try {
@@ -34,7 +34,7 @@ Labyrinth::Labyrinth(const std::string &labyrinth_path,\
                 throw std::runtime_error(std::strerror(errno));
             }
         } catch (std::exception const& e) {
-            std::cout << e.what() << " line 2 " << std::endl;
+            std::cout << e.what() << std::endl;
         }
         
         ss << room_f.rdbuf();
@@ -51,12 +51,13 @@ Labyrinth::Labyrinth(const std::string &labyrinth_path,\
                         room_plan.end());
     }
     room_height = room_plans[0].length() / room_width;
-
+    
     for (auto& sprite_path: sprite_paths) {
         Image cur_sprite(sprite_path);
         sprite_imgs.push_back(cur_sprite);
     }
 
+    /*
     for (auto& room_plan: room_plans) {
         Image room_img(room_height * tile_size,\
                        room_width * tile_size, 4);
@@ -94,6 +95,7 @@ Labyrinth::Labyrinth(const std::string &labyrinth_path,\
         }
         room_imgs.push_back(room_img);
     }
+    */
 }
  
 
