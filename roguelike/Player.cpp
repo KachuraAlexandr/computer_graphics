@@ -61,10 +61,10 @@ void Player::Draw(Image &screen)
 
         old_coords = coords;
     }
-/*
-    for(int y = coords.y; y <= coords.y + tile_size; ++y) {
-        for(int x = coords.x; x <= coords.x + tile_size; ++x) {
+
+    for(int y = coords.y; y < coords.y + tile_size; y++) {
+        for(int x = coords.x; x < coords.x + tile_size; x++) {
             screen.PutPixel(x, y, labyrinth.GetSpriteImgByType(SpriteType::PLAYER).GetPixel(x % tile_size, y % tile_size));
         }
-    } */
+    } 
 }
