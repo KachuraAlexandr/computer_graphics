@@ -86,6 +86,25 @@ void Player::Draw(Image &screen)
 
         old_coords = coords;
     
+        if (labyrinth.GetTileTypeByPos(room_pos, coords) == SpriteType::BLANK_SPACE) {
+            int window_width = tile_size * labyrinth.GetRoomWidth();
+            int window_height = tile_size * labyrinth.GetRoomHeight();
+            Image lost_text_img = labyrinth.GetSpriteImgByType(SpriteType::LOST_TEXT);
+            int lost_text_width = lost_text_img.Width();
+            int lost_text_height = lost_text_img.Height();
+
+            for (int y = window_height / 2 - lost_text_height / 2;
+                  y < window_height / 2 + lost_text_height / 2;
+                  y++) {
+                for (int x = window_width / 2 - lost_text_width / 2;
+                       x < window_width / 2 + lost_text_width / 2;
+                       x++) {
+                    screen.PutPixel(lost_text_img.GetPixel(x - (window_width / 2 - lost_text_width / 2)), \
+                                                                                y - (window_height / 2 - lost_text_height / 2));
+                }
+            }
+            return;
+        } 
 
         for(int y = coords.y; y < coords.y + tile_size; y++) {
             for(int x = coords.x; x < coords.x + tile_size; x++) {
