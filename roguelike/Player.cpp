@@ -99,7 +99,7 @@ void Player::Draw(Image &screen)
                 for (int x = window_width / 2 - lost_text_width / 2;
                        x < window_width / 2 + lost_text_width / 2;
                        x++) {
-                    screen.PutPixel(lost_text_img.GetPixel(x - (window_width / 2 - lost_text_width / 2), \
+                    screen.PutPixel(x, y, lost_text_img.GetPixel(x - (window_width / 2 - lost_text_width / 2), \
                                                                                 y - (window_height / 2 - lost_text_height / 2)));
                 }
             }
