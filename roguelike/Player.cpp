@@ -76,7 +76,7 @@ void Player::ProcessInput(MovementDir dir)
 
 void Player::Draw(Image &screen)
 {
-    if (Moved()) {
+    if (!finished_game && Moved()) {
         Image cur_room_img = labyrinth.GetRoomImgByPos(room_pos);
         for(int y = 0; y < screen.Height(); ++y) {
             for(int x = 0; x < screen.Width(); ++x) {
@@ -86,15 +86,6 @@ void Player::Draw(Image &screen)
 
         old_coords = coords;
         
-        if (labyrinth.GetTileTypeByPos(room_pos, coords) == SpriteType::SPIKES_TRAP) {
-            Point start_pos {}
-            for (int y = coords.y; y < coords.y + tile_size; y++) {
-                for (int x = coords.x; x < coords.x + tile_size; x++) {
-                    screen.PutPixel();
-                }
-            }
-        }
-        
         if (labyrinth.GetTileTypeByPos(room_pos, coords) != SpriteType::BLANK_SPACE) {
             for(int y = coords.y; y < coords.y + tile_size; y++) {
                 for(int x = coords.x; x < coords.x + tile_size; x++) {
@@ -103,6 +94,16 @@ void Player::Draw(Image &screen)
             }
         }
         
+        if (labyrinth.GetTileTypeByPos(room_pos, coords) == SpriteType::SPIKES_TRAP) {
+            Point start_pos {.x = (coords.x / tile_size) * tile_size, .y = (coords.y / tile_size) * tile_size};
+            Image spikes_img = labyrinth.GetSpriteImgByType(SpriteType::SPIKES_TRAP);
+            for (int y = start_pos.y; y < start_pos.y + tile_size; y++) {
+                for (int x = start_pos.x; x < start_pos.x + tile_size; x++) {
+                    screen.PutPixel(x, y, spikes_img.GetPixel(x % tile_size, y % tile_size));
+                }
+            }
+        }
+      
         if (labyrinth.GetTileTypeByPos(room_pos, coords) == SpriteType::BLANK_SPACE ||\
             labyrinth.GetTileTypeByPos(room_pos, coords) == SpriteType::SPIKES_TRAP) {
             
@@ -122,6 +123,29 @@ void Player::Draw(Image &screen)
                                                                                 y - (window_height / 2 - lost_text_height / 2)));
                 }
             }
-        } 
+          
+            finished_game = true;
+        }
+      
+        if (labyrinth.GetTileTypeByPos(room_pos, coords) == SpriteType::QUIT) {
+            int window_width = tile_size * labyrinth.GetRoomWidth();
+            int window_height = tile_size * labyrinth.GetRoomHeight();
+            Image won_text_img = labyrinth.GetSpriteImgByType(SpriteType::WON_TEXT);
+            int won_text_width = won_text_img.Width();
+            int won_text_height = won_text_img.Height();
+
+            for (int y = window_height / 2 - won_text_height / 2;
+                  y < window_height / 2 + won_text_height / 2;
+                  y++) {
+                for (int x = window_width / 2 - won_text_width / 2;
+                       x < window_width / 2 + won_text_width / 2;
+                       x++) {
+                    screen.PutPixel(x, y, won_text_img.GetPixel(x - (window_width / 2 - won_text_width / 2), \
+                                                                                y - (window_height / 2 - won_text_height / 2)));
+                }
+            }
+          
+            finished_game = true;
+        }
     }
 }
