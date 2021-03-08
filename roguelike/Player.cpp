@@ -29,7 +29,7 @@ void Player::ProcessInput(MovementDir dir)
             new_coords.x = coords.x;
             new_coords.y = coords.y + move_dist;
             check_coords.x = new_coords.x; 
-            check_coords.y = new_coords.y + tile_size;
+            check_coords.y = new_coords.y + tile_size - 1;
             //old_coords.y = coords.y;
             //coords.y += move_dist;
             break;
@@ -53,7 +53,7 @@ void Player::ProcessInput(MovementDir dir)
         case MovementDir::RIGHT:
             new_coords.x = coords.x + move_dist;
             new_coords.y = coords.y;
-            check_coords.x = new_coords.x + tile_size;
+            check_coords.x = new_coords.x + tile_size - 1;
             check_coords.y = new_coords.y;
             //old_coords.x = coords.x;
             //coords.x += move_dist;
@@ -63,28 +63,28 @@ void Player::ProcessInput(MovementDir dir)
             break;
     }
 
-    if (new_coords.x >= 0 &&\
-        new_coords.x < tile_size * (labyrinth.GetRoomWidth() - 1) &&\
-        new_coords.y >= 0 &&\
-        new_coords.y < tile_size * (labyrinth.GetRoomHeight() - 1) &&\
+    if (check_coords.x >= 0 &&\
+        check_coords.x <= tile_size * (labyrinth.GetRoomWidth() - 1) &&\
+        check_coords.y >= 0 &&\
+        check_coords.y <= tile_size * (labyrinth.GetRoomHeight() - 1) &&\
         labyrinth.GetTileTypeByPos(room_pos, check_coords) != SpriteType::WALL) {
         
-        if (labyrinth.GetTileTypeByPos(room_pos, coords) == SpriteType::TOP_EXIT) {
+        if (labyrinth.GetTileTypeByPos(room_pos, new_coords) == SpriteType::TOP_EXIT) {
             --room_pos.y;
             new_coords = labyrinth.GetPlayerPosByRoomPos(room_pos);
         }
         
-        if (labyrinth.GetTileTypeByPos(room_pos, coords) == SpriteType::RIGHT_EXIT) {
+        if (labyrinth.GetTileTypeByPos(room_pos, new_coords) == SpriteType::RIGHT_EXIT) {
             ++room_pos.x;
             new_coords = labyrinth.GetPlayerPosByRoomPos(room_pos);
         }
         
-        if (labyrinth.GetTileTypeByPos(room_pos, coords) == SpriteType::BOTTOM_EXIT) {
+        if (labyrinth.GetTileTypeByPos(room_pos, new_coords) == SpriteType::BOTTOM_EXIT) {
             ++room_pos.y;
             new_coords = labyrinth.GetPlayerPosByRoomPos(room_pos);
         }
         
-        if (labyrinth.GetTileTypeByPos(room_pos, coords) == SpriteType::LEFT_EXIT) {
+        if (labyrinth.GetTileTypeByPos(room_pos, new_coords) == SpriteType::LEFT_EXIT) {
             --room_pos.x;
             new_coords = labyrinth.GetPlayerPosByRoomPos(room_pos);
         }
