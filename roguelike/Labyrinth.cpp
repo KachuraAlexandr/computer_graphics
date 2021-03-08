@@ -56,7 +56,7 @@ Labyrinth::Labyrinth(const std::string &labyrinth_path,\
         Image cur_sprite(sprite_path);
         int sprite_width = cur_sprite.Width();
         int sprite_height = cur_sprite.Height();
-        for (int y = 0; y < sprite_height; y++) {
+        for (int y = 0; y < sprite_height / 2; y++) {
             for (int x = 0; x < sprite_width; x++) {
                 Pixel tmp_px = cur_sprite.GetPixel(x, y);
                 cur_sprite.PutPixel(x, y, cur_sprite.GetPixel(x, sprite_height - y - 1));
