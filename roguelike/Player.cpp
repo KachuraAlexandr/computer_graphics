@@ -72,25 +72,27 @@ void Player::ProcessInput(MovementDir dir)
         if (labyrinth.GetTileTypeByPos(room_pos, new_coords) == SpriteType::TOP_EXIT) {
             --room_pos.y;
             new_coords = labyrinth.GetPlayerPosByRoomPos(room_pos);
-        }
-        
-        if (labyrinth.GetTileTypeByPos(room_pos, new_coords) == SpriteType::RIGHT_EXIT) {
+            coords = new_coords;
+            old_coords = coords;
+        } else if (labyrinth.GetTileTypeByPos(room_pos, new_coords) == SpriteType::RIGHT_EXIT) {
             ++room_pos.x;
             new_coords = labyrinth.GetPlayerPosByRoomPos(room_pos);
-        }
-        
-        if (labyrinth.GetTileTypeByPos(room_pos, new_coords) == SpriteType::BOTTOM_EXIT) {
+            coords = new_coords;
+            old_coords = coords;
+        } else if (labyrinth.GetTileTypeByPos(room_pos, new_coords) == SpriteType::BOTTOM_EXIT) {
             ++room_pos.y;
             new_coords = labyrinth.GetPlayerPosByRoomPos(room_pos);
-        }
-        
-        if (labyrinth.GetTileTypeByPos(room_pos, new_coords) == SpriteType::LEFT_EXIT) {
+            coords = new_coords;
+            old_coords = coords;
+        } else if (labyrinth.GetTileTypeByPos(room_pos, new_coords) == SpriteType::LEFT_EXIT) {
             --room_pos.x;
             new_coords = labyrinth.GetPlayerPosByRoomPos(room_pos);
+            coords = new_coords;
+            old_coords = coords;
+        } else {
+            old_coords = coords;
+            coords = new_coords;
         }
-        
-        old_coords = coords;
-        coords = new_coords;
     }
 }
 
