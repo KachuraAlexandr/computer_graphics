@@ -87,7 +87,12 @@ void Player::Draw(Image &screen)
         old_coords = coords;
         
         if (labyrinth.GetTileTypeByPos(room_pos, coords) == SpriteType::SPIKES_TRAP) {
-        
+            Point start_pos {}
+            for (int y = coords.y; y < coords.y + tile_size; y++) {
+                for (int x = coords.x; x < coords.x + tile_size; x++) {
+                    screen.PutPixel();
+                }
+            }
         }
         
         if (labyrinth.GetTileTypeByPos(room_pos, coords) != SpriteType::BLANK_SPACE) {
