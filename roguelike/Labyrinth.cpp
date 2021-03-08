@@ -160,7 +160,7 @@ Labyrinth::GetTileTypeByPos(Point room_pos, Point coords)
         return SpriteType::BLANK_SPACE;
     } else if (room_plan[room_plan_pos] == 'T') {
         return SpriteType::SPIKES_TRAP;
-    } else if (room_plan[room_plan_po) Ps] == 'x') {
+    } else if (room_plan[room_plan_pos] == 'x') {
         if (coords.y / tile_size == room_height - 1) {
             return SpriteType::TOP_EXIT;
         } else if (coords.x / tile_size == room_width - 1) {
