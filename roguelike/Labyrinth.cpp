@@ -81,7 +81,19 @@ Labyrinth::Labyrinth(const std::string &labyrinth_path,\
                         break;
 
                     case 'x':
-                        cur_sprite_type = SpriteType::EXIT;
+                        if (h == 0) {
+                            cur_sprite_type = SpriteType::TOP_EXIT;
+                        } else if (w == room_width - 1) {
+                            cur_sprite_type = SpriteType::RIGHT_EXIT;
+                        } else if (h == room_height - 1) {
+                            cur_sprite_type = SpriteType::BOTTOM_EXIT;
+                        } else if (w == 0) {
+                            cur_sprite_type = SpriteType::LEFT_EXIT;
+                        }
+                        break;
+                    
+                    case 'Q':
+                        cur_sprite_type = SpriteType::QUIT;
                         break;
 
                     default:
@@ -149,7 +161,11 @@ Labyrinth::GetTileTypeByPos(Point room_pos, Point coords)
     } else if (room_plan[room_plan_pos] == 'T') {
         return SpriteType::SPIKES_TRAP;
     } else if (room_plan[room_plan_pos] == 'x') {
-        return SpriteType::EXIT;
+       if ( 
+        return SpriteType::TOP_EXIT;
+        return SpriteType::RIGHT_EXIT;
+        return SpriteType::BOTTOM_EXIT;
+        return SpriteType::LEFT_EXIT;
     } else if (room_plan[room_plan_pos] == '@') {
         return SpriteType::PLAYER;
     }
