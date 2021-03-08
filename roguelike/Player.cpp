@@ -64,9 +64,9 @@ void Player::ProcessInput(MovementDir dir)
     }
 
     if (check_coords.x >= 0 &&\
-        check_coords.x <= tile_size * (labyrinth.GetRoomWidth() - 1) &&\
+        check_coords.x <= tile_size * labyrinth.GetRoomWidth() - 1 &&\
         check_coords.y >= 0 &&\
-        check_coords.y <= tile_size * (labyrinth.GetRoomHeight() - 1) &&\
+        check_coords.y <= tile_size * labyrinth.GetRoomHeight() - 1 &&\
         labyrinth.GetTileTypeByPos(room_pos, check_coords) != SpriteType::WALL) {
         
         if (labyrinth.GetTileTypeByPos(room_pos, new_coords) == SpriteType::TOP_EXIT) {
