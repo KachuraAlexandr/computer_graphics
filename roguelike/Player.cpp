@@ -100,7 +100,7 @@ void Player::Draw(Image &screen)
                        x < window_width / 2 + lost_text_width / 2;
                        x++) {
                     screen.PutPixel(lost_text_img.GetPixel(x - (window_width / 2 - lost_text_width / 2), \
-                                                                                y - (window_height / 2 - lost_text_height / 2));
+                                                                                y - (window_height / 2 - lost_text_height / 2)));
                 }
             }
             return;
