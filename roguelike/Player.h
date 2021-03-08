@@ -24,7 +24,7 @@ private:
     Point room_pos;
     Point coords;
     Point old_coords;
-    int move_speed = 64;
+    int move_speed = 32;
     bool finished_game = false;
 };
 
