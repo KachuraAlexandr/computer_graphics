@@ -89,7 +89,7 @@ void Player::Draw(Image &screen)
 
         for(int y = coords.y; y < coords.y + tile_size; y++) {
             for(int x = coords.x; x < coords.x + tile_size; x++) {
-                screen.PutPixel(x, y, labyrinth.GetSpriteImgByType(SpriteType::PLAYER).GetPixel(x % tile_size, y % tile_size));
+                screen.PutPixel(x, y, labyrinth.GetSpriteImgByType(SpriteType::PLAYER).GetPixel(x - coords.x, y - coords.y));
             }
         } 
     }
