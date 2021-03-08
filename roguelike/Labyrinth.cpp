@@ -160,12 +160,16 @@ Labyrinth::GetTileTypeByPos(Point room_pos, Point coords)
         return SpriteType::BLANK_SPACE;
     } else if (room_plan[room_plan_pos] == 'T') {
         return SpriteType::SPIKES_TRAP;
-    } else if (room_plan[room_plan_pos] == 'x') {
-       if ( 
-        return SpriteType::TOP_EXIT;
-        return SpriteType::RIGHT_EXIT;
-        return SpriteType::BOTTOM_EXIT;
-        return SpriteType::LEFT_EXIT;
+    } else if (room_plan[room_plan_po) Ps] == 'x') {
+        if (coords.y / tile_size == room_height - 1) {
+            return SpriteType::TOP_EXIT;
+        } else if (coords.x / tile_size == room_width - 1) {
+            return SpriteType::RIGHT_EXIT;
+        } else if (coords.y / tile_size == 0) {
+            return SpriteType::BOTTOM_EXIT;
+        } else if (coords.x / tile_size == 0) {
+            return SpriteType::LEFT_EXIT;
+        }
     } else if (room_plan[room_plan_pos] == '@') {
         return SpriteType::PLAYER;
     }
