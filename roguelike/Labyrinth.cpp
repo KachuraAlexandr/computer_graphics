@@ -112,7 +112,7 @@ Labyrinth::Labyrinth(const std::string &labyrinth_path,\
                 for (int y = 0; y < tile_size; y++) {
                     for (int x = 0; x < tile_size; x++) {
                         room_img.PutPixel(w * tile_size + x,\
-                                          h * tile_size + y,\
+                                          (room_height - h - 1) * tile_size + y,\
                                           sprite_imgs[static_cast<int>\
                                             (cur_sprite_type)].GetPixel(x, y));
                     }
