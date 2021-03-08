@@ -1,4 +1,4 @@
-,#include "Labyrinth.h"
+#include "Labyrinth.h"
 
 
 Labyrinth::Labyrinth(const std::string &labyrinth_path,\
