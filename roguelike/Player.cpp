@@ -36,8 +36,7 @@ void Player::ProcessInput(MovementDir dir)
         case MovementDir::DOWN:
             new_coords.x = coords.x;
             new_coords.y = coords.y - move_dist;
-            check_coords.x = new_coords.x;
-            check_coords.y = new_coords.y - tile_size;
+            check_coords = new_coords;
             //old_coords.y = coords.y;
             //coords.y -= move_dist;
             break;
@@ -45,8 +44,7 @@ void Player::ProcessInput(MovementDir dir)
         case MovementDir::LEFT:
             new_coords.x = coords.x - move_dist;
             new_coords.y = coords.y;
-            check_coords.x = new_coords.x - tile_size;
-            check_coords.y = new_coords.y;
+            check_coords = new_coords;
             //old_coords.x = coords.x;
             //coords.x -= move_dist;
             break;
@@ -87,11 +85,12 @@ void Player::Draw(Image &screen)
         } 
 
         old_coords = coords;
-    }
+    
 
-    for(int y = coords.y; y < coords.y + tile_size; y++) {
-        for(int x = coords.x; x < coords.x + tile_size; x++) {
-            screen.PutPixel(x, y, labyrinth.GetSpriteImgByType(SpriteType::PLAYER).GetPixel(x % tile_size, y % tile_size));
-        }
-    } 
+        for(int y = coords.y; y < coords.y + tile_size; y++) {
+            for(int x = coords.x; x < coords.x + tile_size; x++) {
+                screen.PutPixel(x, y, labyrinth.GetSpriteImgByType(SpriteType::PLAYER).GetPixel(x % tile_size, y % tile_size));
+            }
+        } 
+    }
 }
