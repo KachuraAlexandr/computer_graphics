@@ -23,6 +23,7 @@ void Player::ProcessInput(MovementDir dir)
 {    
     int move_dist = move_speed * 1;
     Point new_coords, check_coords;
+    
     switch(dir) {
         case MovementDir::UP:
             new_coords.x = coords.x;
@@ -67,6 +68,26 @@ void Player::ProcessInput(MovementDir dir)
         new_coords.y >= 0 &&\
         new_coords.y < tile_size * (labyrinth.GetRoomHeight() - 1) &&\
         labyrinth.GetTileTypeByPos(room_pos, check_coords) != SpriteType::WALL) {
+        
+        if (labyrinth.GetTileTypeByPos(room_pos, coords) == SpriteType::TOP_EXIT) {
+            --room_pos.y;
+            new_coords = labyrinth.GetPlayerPosByRoomPos(room_pos);
+        }
+        
+        if (labyrinth.GetTileTypeByPos(room_pos, coords) == SpriteType::RIGHT_EXIT) {
+            ++room_pos.x;
+            new_coords = labyrinth.GetPlayerPosByRoomPos(room_pos);
+        }
+        
+        if (labyrinth.GetTileTypeByPos(room_pos, coords) == SpriteType::BOTTOM_EXIT) {
+            ++room_pos.y;
+            new_coords = labyrinth.GetPlayerPosByRoomPos(room_pos);
+        }
+        
+        if (labyrinth.GetTileTypeByPos(room_pos, coords) == SpriteType::LEFT_EXIT) {
+            --room_pos.x;
+            new_coords = labyrinth.GetPlayerPosByRoomPos(room_pos);
+        }
         
         old_coords = coords;
         coords = new_coords;
