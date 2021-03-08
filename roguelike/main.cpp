@@ -203,6 +203,21 @@ int main(int argc, char** argv)
 
         glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);  GL_CHECK_ERRORS;
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f); GL_CHECK_ERRORS;
+        
+        Image starting_room_img = labyrinth.GetRoomImgByPos(starting_room);
+        for (int y = 0; y < WINDOW_HEIGHT; y++) {    
+            for (int x = 0; x < WINDOW_WIDTH; x++) {
+                screenBuffer.PutPixel(x, y, starting_room_img.GetPixel(x, y));
+            }
+        }
+
+        Image player_img = labyrinth.GetSpriteImgByType(SpriteType::PLAYER);
+        Point player_pos = labyrinth.GetPlayerPosByRoomPos(starting_room);
+        for (int y = player_pos.y; y < player_pos.y + tile_size; y++) {
+            for (int x = player_pos.x; x < player_pos.x + tile_size; x++) {
+                screenBuffer.PutPixel(x, y, player_img.GetPixel(x % tile_size, y % tile_size));
+            }
+       }
 
         // game loop
 	while (!glfwWindowShouldClose(window)) {
