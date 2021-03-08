@@ -65,7 +65,9 @@ Labyrinth::Labyrinth(const std::string &labyrinth_path,\
                 SpriteType cur_sprite_type;
                 switch (room_plan[h * room_width + w]) {
                     case '.':
+
                     case 'T':
+
                     case '@':
                         cur_sprite_type = SpriteType::GROUND;
                         break;
@@ -124,7 +126,7 @@ Labyrinth::GetPlayerPosByRoomPos(Point room_pos)
                                labyrinth_width + room_pos.x]) -\
                                int('A')].find_first_of('@');
     int x_pos = (player_tile_pos % room_width) * tile_size;
-    int y_pos = (room_height - player_tile_pos / room_width) * tile_size;
+    int y_pos = (room_height - 1 - player_tile_pos / room_width) * tile_size;
     Point player_pos{.x = x_pos, .y = y_pos};
     return player_pos;
 }
