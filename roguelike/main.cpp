@@ -194,12 +194,6 @@ int main(int argc, char** argv)
 	Player player{starting_room, labyrinth};
 
 	Image screenBuffer(WINDOW_WIDTH, WINDOW_HEIGHT, 4);
-    
-        for (int y = 0; y < WINDOW_HEIGHT; y++) {
-            for (int x = 0; x < WINDOW_WIDTH; x++) {
-                screenBuffer.PutPixel(x, y, labyrinth.GetRoomImgByPos(starting_room).GetPixel(x % tile_size, y % tile_size));
-            }
-        }
 
         glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);  GL_CHECK_ERRORS;
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f); GL_CHECK_ERRORS;
@@ -217,8 +211,13 @@ int main(int argc, char** argv)
             for (int x = player_pos.x; x < player_pos.x + tile_size; x++) {
                 screenBuffer.PutPixel(x, y, player_img.GetPixel(x % tile_size, y % tile_size));
             }
-       }
+        }
+		
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); GL_CHECK_ERRORS;
+                glDrawPixels (WINDOW_WIDTH, WINDOW_HEIGHT, GL_RGBA, GL_UNSIGNED_BYTE, screenBuffer.Data()); GL_CHECK_ERRORS;
 
+		glfwSwapBuffers(window);
+	
         // game loop
 	while (!glfwWindowShouldClose(window)) {
 		GLfloat currentFrame = glfwGetTime();
