@@ -161,7 +161,7 @@ void Player::Draw(Image &screen)
             }
         }
       
-        if (into_blank_space // into_spikes_trap) {
+        if (into_blank_space || into_spikes_trap) {
             
             int window_width = tile_size * labyrinth.GetRoomWidth();
             int window_height = tile_size * labyrinth.GetRoomHeight();
