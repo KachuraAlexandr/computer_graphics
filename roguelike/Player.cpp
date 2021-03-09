@@ -119,26 +119,29 @@ void Player::Draw(Image &screen)
         Point into_spikes_trap_coords;
 
         if (labyrinth.GetTileTypeByPos(room_pos, edge_coords_1) == SpriteType::BLANK_SPACE ||\
-            labyrinth.GetTileTypeByPos(room_pos, edge_coords_1) == SpriteType::BLANK_SPACE ||\
-            labyrinth.GetTileTypeByPos(room_pos, edge_coords_1) == SpriteType::BLANK_SPACE ||\
-            labyrinth.GetTileTypeByPos(room_pos, edge_coords_1) == SpriteType::BLANK_SPACE) {
+            labyrinth.GetTileTypeByPos(room_pos, edge_coords_2) == SpriteType::BLANK_SPACE ||\
+            labyrinth.GetTileTypeByPos(room_pos, edge_coords_3) == SpriteType::BLANK_SPACE ||\
+            labyrinth.GetTileTypeByPos(room_pos, edge_coords_4) == SpriteType::BLANK_SPACE) {
             
             into_blank_space = true;
         }
         
-        if () {
-         
+        if (labyrinth.GetTileTypeByPos(room_pos, edge_coords_1) == SpriteType::SPIKES_TRAP) {
+            into_spikes_trap = true;
+            into_spikes_trap_coords = edge_coords_1;
         }
-        if () {
-        
+        if (labyrinth.GetTileTypeByPos(room_pos, edge_coords_2) == SpriteType::SPIKES_TRAP) {
+            into_spikes_trap = true;
+            into_spikes_trap_coords = edge_coords_2;
         }
-        if () {
-         
+        if (labyrinth.GetTileTypeByPos(room_pos, edge_coords_3) == SpriteType::SPIKES_TRAP) {
+            into_spikes_trap = true;
+            into_spikes_trap_coords = edge_coords_3;
         }
-         if () {
-             into_spikes_trap = true;
-             into_spikes_trap_coords = edge_coords_4;
-         }
+        if (labyrinth.GetTileTypeByPos(room_pos, edge_coords_4) == SpriteType::SPIKES_TRAP) {
+            into_spikes_trap = true;
+            into_spikes_trap_coords = edge_coords_4;
+        }
 
         if (!into_blank_space) {
             for(int y = coords.y; y < coords.y + tile_size; y++) {
