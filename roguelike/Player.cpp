@@ -22,7 +22,7 @@ bool Player::Moved() const
 void Player::ProcessInput(MovementDir dir)
 {    
     int move_dist = move_speed * 1;
-    Point new_coords, check_coords;
+    Point new_coords, check_coords, check_coords_2;
     
     switch(dir) {
         case MovementDir::UP:
@@ -30,24 +30,24 @@ void Player::ProcessInput(MovementDir dir)
             new_coords.y = coords.y + move_dist;
             check_coords.x = new_coords.x; 
             check_coords.y = new_coords.y + tile_size - 1;
-            //old_coords.y = coords.y;
-            //coords.y += move_dist;
+            check_coords_2 = check_coords;
+            check_coords_2.x += tile_size - 1;
             break;
 
         case MovementDir::DOWN:
             new_coords.x = coords.x;
             new_coords.y = coords.y - move_dist;
             check_coords = new_coords;
-            //old_coords.y = coords.y;
-            //coords.y -= move_dist;
+            check_coords_2 = check_coords;
+            check_coords_2.x += tile_size - 1;
             break;
     
         case MovementDir::LEFT:
             new_coords.x = coords.x - move_dist;
             new_coords.y = coords.y;
             check_coords = new_coords;
-            //old_coords.x = coords.x;
-            //coords.x -= move_dist;
+            check_coords_2 = check_coords;
+            check_coords_2.y += tile_size - 1;
             break;
 
         case MovementDir::RIGHT:
@@ -55,8 +55,8 @@ void Player::ProcessInput(MovementDir dir)
             new_coords.y = coords.y;
             check_coords.x = new_coords.x + tile_size - 1;
             check_coords.y = new_coords.y;
-            //old_coords.x = coords.x;
-            //coords.x += move_dist;
+            check_coords_2 = check_coords;
+            check_coords_2.y += tile_size - 1;
             break;
 
         default:
@@ -67,7 +67,8 @@ void Player::ProcessInput(MovementDir dir)
         check_coords.x <= tile_size * labyrinth.GetRoomWidth() - 1 &&\
         check_coords.y >= 0 &&\
         check_coords.y <= tile_size * labyrinth.GetRoomHeight() - 1 &&\
-        labyrinth.GetTileTypeByPos(room_pos, check_coords) != SpriteType::WALL) {
+        labyrinth.GetTileTypeByPos(room_pos, check_coords) != SpriteType::WALL &&\
+        labyrinth.GetTileTypeByPos(room_pos, check_coords_2) != SpriteType::WALL) {
         
         if (labyrinth.GetTileTypeByPos(room_pos, new_coords) == SpriteType::TOP_EXIT) {
             --room_pos.y;
