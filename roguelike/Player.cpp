@@ -109,7 +109,27 @@ void Player::Draw(Image &screen)
         } 
 
         old_coords = coords;
+       
+        Point edge_coords_1 = coords;
+        Point edge_coords_2 {.x = coords.x + tile_size - 1, .y = coords.y};
+        Point edge_coords_3 {.x = coords.x, .y = coords.y + tile_size - 1};
+        Point edge_coords_4 {.x = coords.x + tile_size - 1, .y = coords.y + tile_size - 1};
+        bool into_blank_space = false;
+        bool into_spikes_trap = false;
+        Point into_spikes_trap_coords;
+
+        if (labyrinth.GetTileTypeByPos(room_pos, edge_coords_1) == SpriteType::BLANK_SPACE) {
+            into_blank_space = true;
+        }
         
+        edge_coords.x += tile_size - 1;
+        if (labyrinth.GetTileTypeByPos(room_pos, edge_coords) == SpriteType::BLANK_SPACE) {
+             into_blank_space = true;
+         }
+
+         edge_coords.x = coords.x;
+         edge_coords.y += tile_size - 1;
+         if (labyrinth.GetTileTypeByPos() == SpriteType::BLANK_SPACE
         if (labyrinth.GetTileTypeByPos(room_pos, coords) != SpriteType::BLANK_SPACE) {
             for(int y = coords.y; y < coords.y + tile_size; y++) {
                 for(int x = coords.x; x < coords.x + tile_size; x++) {
