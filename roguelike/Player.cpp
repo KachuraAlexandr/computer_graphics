@@ -151,8 +151,8 @@ void Player::Draw(Image &screen)
             }
         }
         
-        if (labyrinth.GetTileTypeByPos(room_pos, coords) == SpriteType::SPIKES_TRAP) {
-            Point start_pos {.x = (coords.x / tile_size) * tile_size, .y = (coords.y / tile_size) * tile_size};
+        if (into_spikes_trap) {
+            Point start_pos {.x = (into_spikes_trap_coords.x / tile_size) * tile_size, .y = (into_spikes_trap_coords.y / tile_size) * tile_size};
             Image spikes_img = labyrinth.GetSpriteImgByType(SpriteType::SPIKES_TRAP);
             for (int y = start_pos.y; y < start_pos.y + tile_size; y++) {
                 for (int x = start_pos.x; x < start_pos.x + tile_size; x++) {
@@ -161,8 +161,7 @@ void Player::Draw(Image &screen)
             }
         }
       
-        if (labyrinth.GetTileTypeByPos(room_pos, coords) == SpriteType::BLANK_SPACE ||\
-            labyrinth.GetTileTypeByPos(room_pos, coords) == SpriteType::SPIKES_TRAP) {
+        if (into_blank_space // into_spikes_trap) {
             
             int window_width = tile_size * labyrinth.GetRoomWidth();
             int window_height = tile_size * labyrinth.GetRoomHeight();
