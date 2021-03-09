@@ -126,7 +126,20 @@ void Player::Draw(Image &screen)
             into_blank_space = true;
         }
         
+        if () {
+         
+        }
+        if () {
         
+        }
+        if () {
+         
+        }
+         if () {
+             into_spikes_trap = true;
+             into_spikes_trap_coords = edge_coords_4;
+         }
+
         if (!into_blank_space) {
             for(int y = coords.y; y < coords.y + tile_size; y++) {
                 for(int x = coords.x; x < coords.x + tile_size; x++) {
