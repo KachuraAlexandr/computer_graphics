@@ -118,19 +118,16 @@ void Player::Draw(Image &screen)
         bool into_spikes_trap = false;
         Point into_spikes_trap_coords;
 
-        if (labyrinth.GetTileTypeByPos(room_pos, edge_coords_1) == SpriteType::BLANK_SPACE) {
+        if (labyrinth.GetTileTypeByPos(room_pos, edge_coords_1) == SpriteType::BLANK_SPACE ||\
+            labyrinth.GetTileTypeByPos(room_pos, edge_coords_1) == SpriteType::BLANK_SPACE ||\
+            labyrinth.GetTileTypeByPos(room_pos, edge_coords_1) == SpriteType::BLANK_SPACE ||\
+            labyrinth.GetTileTypeByPos(room_pos, edge_coords_1) == SpriteType::BLANK_SPACE) {
+            
             into_blank_space = true;
         }
         
-        edge_coords.x += tile_size - 1;
-        if (labyrinth.GetTileTypeByPos(room_pos, edge_coords) == SpriteType::BLANK_SPACE) {
-             into_blank_space = true;
-         }
-
-         edge_coords.x = coords.x;
-         edge_coords.y += tile_size - 1;
-         if (labyrinth.GetTileTypeByPos() == SpriteType::BLANK_SPACE
-        if (labyrinth.GetTileTypeByPos(room_pos, coords) != SpriteType::BLANK_SPACE) {
+        
+        if (!into_blank_space) {
             for(int y = coords.y; y < coords.y + tile_size; y++) {
                 for(int x = coords.x; x < coords.x + tile_size; x++) {
                     screen.PutPixel(x, y, labyrinth.GetSpriteImgByType(SpriteType::PLAYER).GetPixel(x - coords.x, y - coords.y));
